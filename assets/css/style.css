@@ -1,0 +1,90 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+h3{
+    text-align: center;
+}
+
+.box-1{
+    border: 2px solid black;
+    padding:20px;
+    margin-top:40px;
+    margin-left:-150px;
+    overflow:hidden;
+    background:white;
+}
+
+.box-2{
+    border: 2px solid black;
+    margin-top:220px;
+    overflow:hidden;
+    background:white;
+    height:600px;
+    margin-bottom:-500px;
+    margin-right:-400px;
+    background-image: url("../images/southpark.jpg");
+    background-size: cover;
+}
+
+
+#bus_stop{
+    padding:10px;
+    width:100%;
+    height:185px;
+    position:relative;
+}
+
+#cityhall{
+    padding:10px;
+    width:100%;
+    height:185px;
+    position:relative;
+    float:right;
+}
+
+#citywok{
+    padding:10px;
+    width:100%;
+    height:185px;
+    position:relative;
+}
+
+#school{
+    padding:10px;
+    width:100%;
+    height:185px;
+    position:relative;
+    float:right;
+}
+
+#cartman{
+    padding:10px;
+    width:100%;
+    height:185px;
+    position:relative;
+}
+
+#kenny{
+    padding:10px;
+    width:100%;
+    height:185px;
+    position:relative;
+    float:right;
+}
+
+#kyle{
+    padding:10px;
+    width:100%;
+    height:185px;
+    position:relative;
+}
+
+#stan{
+    padding:10px;
+    width:100%;
+    height:185px;
+    position:relative;
+    float:right;
+}
