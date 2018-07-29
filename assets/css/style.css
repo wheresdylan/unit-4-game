@@ -88,3 +88,15 @@ h3{
     position:relative;
     float:right;
 }
+
+#hero_character{
+    height:300px;
+    margin-top:200px;
+    margin-left:40px;
+}
+
+#enemy_character{
+    height:300px;
+    margin-top:200px;
+    margin-left:40px;
+}
