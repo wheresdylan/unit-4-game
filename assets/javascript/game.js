@@ -1,6 +1,7 @@
 
 
  $(document).ready(function() {
+
     var character;
     var battleGround;
     var first_click = true;
@@ -16,8 +17,11 @@
     var enemyCurrentHealth = 100;
     var characterCount = 4;
 
+function game(){
     $('#hero_character').hide();
     $('#enemy_character').hide();
+
+    $('.header').text("CHOOSE YOUR FIGHTER");
 
 
     $(".background").on("click", function() {
@@ -40,20 +44,21 @@
 
         $(".background").off('click');
       })
+      
 
     $(".character").on("click", function() {
     if (first_click){
         character = ($(this).attr('id'));
         if(character === "cartman"){
             $('#cartman').hide('slow');
-            $('.header').text("Choose An Opponent");
+            $('.header').text("CHOOSE AN OPPONENT");
             $("#hero_character").attr('src',"https://vignette.wikia.nocookie.net/southpark/images/f/fd/The-coon.png/revision/latest?cb=20171107042514");
             $('#hero_character').show('slow');
             hero = cartman;
         }
         else if(character === "kyle"){
             $('#kyle').hide('slow');
-            $('.header').text("Choose An Opponent");
+            $('.header').text("CHOOSE AN OPPONENT");
             $("#hero_character").attr('src',"https://vignette.wikia.nocookie.net/p__/images/e/e9/Spfbw-humankite.png/revision/latest?cb=20171028075530&path-prefix=protagonist");
             $('#hero_character').show('slow');
             hero = kyle;
@@ -61,21 +66,21 @@
         }
         else if(character === "stan"){
             $('#stan').hide('slow');
-            $('.header').text("Choose An Opponent");
+            $('.header').text("CHOOSE AN OPPONENT");
             $("#hero_character").attr('src',"https://vignette.wikia.nocookie.net/southpark/images/b/bd/Toolshed.transparent.png/revision/latest?cb=20170527025409");
             $('#hero_character').show('slow');
             hero = stan;
         }
         else if(character === "kenny"){
             $('#kenny').hide('slow');
-            $('.header').text("Choose An Opponent");
+            $('.header').text("CHOOSE AN OPPONENT");
             $("#hero_character").attr('src',"https://vignette.wikia.nocookie.net/southpark/images/1/1c/Mysterion_2.png/revision/latest?cb=20171107042555");
             $('#hero_character').show('slow');
             hero = kenny;
         }
 
         first_click = false;
-    }else{
+    }else if (first_click === false){
     
                 character = ($(this).attr('id'));
                 if(character === "cartman"){
@@ -103,6 +108,7 @@
                     enemy = kenny;
                 }
 
+
                 $(".character").off("click");
             }
 
@@ -122,11 +128,11 @@
         
         $('#heroHealth').css('width', heroCurrentHealth + '%');
         $('#heroHealth').attr('aria-valuenow', heroCurrentHealth);
-        $('.heroPercentage').text(heroCurrentHealth + '%')
+        $('.heroPercentage').text(heroCurrentHealth + '%');
 
         $('#enemyHealth').css('width', enemyCurrentHealth + '%');
         $('#enemyHealth').attr('aria-valuenow', enemyCurrentHealth);
-        $('.enemyPercentage').text(enemyCurrentHealth + '%')
+        $('.enemyPercentage').text(enemyCurrentHealth + '%');
 
         if(enemyCurrentHealth <= 0){
             characterCount = characterCount - 1;
@@ -179,26 +185,66 @@
             $('#hero_character').hide('slow');
             $('.header').text("CLICK TO RESTART");
             
-            function blinker() {
-                $('.header').fadeOut(500);
-                $('.header').fadeIn(500);
-            }
+            // function blinker() {
+            //     $('.header').fadeOut(500);
+            //     $('.header').fadeIn(500);
+            // }
             
-            setInterval(blinker, 1000);
+            // setInterval(blinker, 1000);
 
         }
+    
 
         if(characterCount === 1){
             $('.header').text("CLICK TO RESTART");
 
-            function blinker() {
-                $('.header').fadeOut(500);
-                $('.header').fadeIn(500);
-            }
+            // function blinker() {
+            //     $('.header').fadeOut(500);
+            //     $('.header').fadeIn(500);
+            // }
             
-            setInterval(blinker, 1000);
+            // setInterval(blinker, 1000);
         }
     })
-  
+ 
+}
 
- });
+game();
+
+$('.header').on('click',function(){
+    if (heroCurrentHealth <= 0 || characterCount === 1){
+        $('.header').text("CHOOSE YOUR FIGHTER");
+
+        $(".attack").off("click");
+
+        $('#hero_character').hide();
+        $('#enemy_character').hide();
+
+        first_click = true;
+        cartman = {attack:10,defense:30};
+        stan = {attack:100,defense:20};
+        kenny = {attack:25,defense:15};
+        kyle = {attack:30,defense:10};
+        heroCurrentHealth = 100;
+        enemyCurrentHealth = 100;
+        characterCount = 4;
+
+        $('#enemyHealth').css('width', enemyCurrentHealth + '%');
+        $('#enemyHealth').attr('aria-valuenow', enemyCurrentHealth);
+        $('#heroHealth').css('width', heroCurrentHealth + '%');
+        $('#heroHealth').attr('aria-valuenow', heroCurrentHealth);
+        $('.heroPercentage').text(heroCurrentHealth + '%');
+        $('.enemyPercentage').text(enemyCurrentHealth + '%');
+
+        $('#cartman').show();
+        $('#kyle').show();
+        $('#stan').show();
+        $('#kenny').show();
+        $('.attack').show();
+
+        game();
+    }
+
+})
+
+});
