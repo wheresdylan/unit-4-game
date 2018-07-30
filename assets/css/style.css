@@ -3,8 +3,12 @@
     padding:0;
 }
 
-h3{
+h3, h4{
     text-align: center;
+}
+
+h3{
+    border:2px solid black;
 }
 
 .box-1{
@@ -18,12 +22,20 @@ h3{
 
 .box-2{
     border: 2px solid black;
-    margin-top:220px;
+    padding:20px;
+    margin-top:40px;
+    margin-left:-150px;
     overflow:hidden;
     background:white;
-    height:600px;
-    margin-bottom:-500px;
-    margin-right:-400px;
+}
+
+.box-3{
+    border: 2px solid black;
+    overflow:hidden;
+    background:white;
+    height:655px;
+    margin-top:40px;
+    margin-right:-120px;
     background-image: url("../images/southpark.jpg");
     background-size: cover;
 }

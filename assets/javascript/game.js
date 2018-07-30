@@ -7,10 +7,10 @@
     var first_click = true;
     var hero;
     var enemy;
-    var cartman = {attack:10,defense:30};
-    var stan = {attack:100,defense:20};
-    var kenny = {attack:25,defense:15};
-    var kyle = {attack:30,defense:10};
+    var cartman = {attack:70,defense:55};
+    var stan = {attack:100,defense:45};
+    var kenny = {attack:110,defense:40};
+    var kyle = {attack:85,defense:60};
     var heroAttack;
     var enemyAttack;
     var heroCurrentHealth = 100;
@@ -22,24 +22,25 @@ function game(){
     $('#enemy_character').hide();
 
     $('.header').text("CHOOSE YOUR FIGHTER");
+    $(".attack").hide();
 
 
     $(".background").on("click", function() {
         battleGround = ($(this).attr('id'));
         if (battleGround === "bus_stop"){
-            $('.box-2').css("background-image","url('https://vignette.wikia.nocookie.net/southpark/images/c/ca/Bus-stop.jpg/revision/latest?cb=20141214163925')");
+            $('.box-3').css("background-image","url('https://vignette.wikia.nocookie.net/southpark/images/c/ca/Bus-stop.jpg/revision/latest?cb=20141214163925')");
         }
 
         if (battleGround === "school"){
-            $('.box-2').css("background-image","url('https://vignette.wikia.nocookie.net/southpark/images/8/82/School.jpg/revision/latest?cb=20150202151429')");
+            $('.box-3').css("background-image","url('https://vignette.wikia.nocookie.net/southpark/images/8/82/School.jpg/revision/latest?cb=20150202151429')");
         }
 
         if (battleGround === "cityhall"){
-            $('.box-2').css("background-image","url('https://www.aweapps.com/images/cityhall.jpg')");
+            $('.box-3').css("background-image","url('https://www.aweapps.com/images/cityhall.jpg')");
         }
 
         if (battleGround === "citywok"){
-            $('.box-2').css("background-image","url('https://vignette.wikia.nocookie.net/southpark/images/b/bf/ChildAbductionIsNotFunny04.jpg/revision/latest?cb=20100414174909')");
+            $('.box-3').css("background-image","url('https://vignette.wikia.nocookie.net/southpark/images/b/bf/ChildAbductionIsNotFunny04.jpg/revision/latest?cb=20100414174909')");
         }
 
         $(".background").off('click');
@@ -88,24 +89,28 @@ function game(){
                     $("#enemy_character").attr('src',"https://vignette.wikia.nocookie.net/southpark/images/f/fd/The-coon.png/revision/latest?cb=20171107042514");
                     $('#enemy_character').show('slow');
                     enemy = cartman;
+                    $(".attack").show();
                 }
                 else if(character === "kyle"){
                     $('#kyle').hide('slow');
                     $("#enemy_character").attr('src',"https://vignette.wikia.nocookie.net/p__/images/e/e9/Spfbw-humankite.png/revision/latest?cb=20171028075530&path-prefix=protagonist");
                     $('#enemy_character').show('slow');
                     enemy = kyle;
+                    $(".attack").show();
                 }
                 else if(character === "stan"){
                     $('#stan').hide('slow');
                     $("#enemy_character").attr('src',"https://vignette.wikia.nocookie.net/southpark/images/b/bd/Toolshed.transparent.png/revision/latest?cb=20170527025409");
                     $('#enemy_character').show('slow');
                     enemy = stan;
+                    $(".attack").show();
                 }
                 else if(character === "kenny"){
                     $('#kenny').hide('slow');
                     $("#enemy_character").attr('src',"https://vignette.wikia.nocookie.net/southpark/images/1/1c/Mysterion_2.png/revision/latest?cb=20171107042555");
                     $('#enemy_character').show('slow');
                     enemy = kenny;
+                    $(".attack").show();
                 }
 
 
@@ -135,6 +140,11 @@ function game(){
         $('.enemyPercentage').text(enemyCurrentHealth + '%');
 
         if(enemyCurrentHealth <= 0){
+
+            $('#heroHealth').css('width', 100 + '%');
+            $('#heroHealth').attr('aria-valuenow', 100);
+            $('.heroPercentage').text(100 + '%');
+
             characterCount = characterCount - 1;
             $('#enemy_character').hide('slow');
             
@@ -185,25 +195,12 @@ function game(){
             $('#hero_character').hide('slow');
             $('.header').text("CLICK TO RESTART");
             
-            // function blinker() {
-            //     $('.header').fadeOut(500);
-            //     $('.header').fadeIn(500);
-            // }
-            
-            // setInterval(blinker, 1000);
 
         }
     
 
         if(characterCount === 1){
             $('.header').text("CLICK TO RESTART");
-
-            // function blinker() {
-            //     $('.header').fadeOut(500);
-            //     $('.header').fadeIn(500);
-            // }
-            
-            // setInterval(blinker, 1000);
         }
     })
  
