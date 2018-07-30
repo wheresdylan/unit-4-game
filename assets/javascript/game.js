@@ -107,6 +107,7 @@
 
         })
 
+
     $(".attack").on("click",function() {
 
         console.log('3');
@@ -122,12 +123,15 @@
 
         console.log(heroCurrentHealth);
         console.log(enemyCurrentHealth);
-        
-        $('.progress').attr('width', heroCurrentHealth + '%');
-        $('.progress').attr('aria-valuenow', heroCurrentHealth);
 
-        $('.progress').attr('width', enemyCurrentHealth + '%');
-        $('.progress').attr('aria-valuenow', enemyCurrentHealth);
+        
+        $('#heroHealth').css('width', heroCurrentHealth + '%');
+        $('#heroHealth').attr('aria-valuenow', heroCurrentHealth);
+        $('.heroPercentage').text(heroCurrentHealth + '%')
+
+        $('#enemyHealth').css('width', enemyCurrentHealth + '%');
+        $('#enemyHealth').attr('aria-valuenow', enemyCurrentHealth);
+        $('.enemyPercentage').text(enemyCurrentHealth + '%')
     })
   
 
