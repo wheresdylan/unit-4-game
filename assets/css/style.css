@@ -28,6 +28,11 @@ h3{
     background-size: cover;
 }
 
+.progress{
+    margin-top: 15px;
+}
+
+
 
 #bus_stop{
     padding:10px;
