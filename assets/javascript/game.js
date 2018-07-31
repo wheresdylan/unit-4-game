@@ -7,15 +7,17 @@
     var first_click = true;
     var hero;
     var enemy;
-    var cartman = {attack:70,defense:55};
-    var stan = {attack:100,defense:45};
-    var kenny = {attack:110,defense:40};
-    var kyle = {attack:85,defense:60};
+    var cartman = {attack:90,defense:65};
+    var stan = {attack:85,defense:50};
+    var kenny = {attack:110,defense:50};
+    var kyle = {attack:95,defense:60};
     var heroAttack;
     var enemyAttack;
     var heroCurrentHealth = 100;
     var enemyCurrentHealth = 100;
     var characterCount = 4;
+    var lemmeWinks = document.getElementById("audio1");
+    var punch = document.getElementById("audio2");
 
 function game(){
     $('#hero_character').hide();
@@ -129,6 +131,7 @@ function game(){
         enemyCurrentHealth = enemyCurrentHealth - heroAttack;
 
         $("#hero_character").animate({ left: "+=400px" }, "fast" );
+        punch.play();
         $("#hero_character").animate({ left: "-=400px" }, "fast" );
         
         $('#heroHealth').css('width', heroCurrentHealth + '%');
@@ -138,6 +141,10 @@ function game(){
         $('#enemyHealth').css('width', enemyCurrentHealth + '%');
         $('#enemyHealth').attr('aria-valuenow', enemyCurrentHealth);
         $('.enemyPercentage').text(enemyCurrentHealth + '%');
+
+        hero.attack = hero.attack + 10;
+        console.log(heroAttack);
+        console.log(enemyAttack);
 
         if(enemyCurrentHealth <= 0){
 
@@ -183,6 +190,7 @@ function game(){
                 $('.enemyPercentage').text(100 + '%')
 
                 enemyCurrentHealth = 100;
+                heroCurrentHealth = 100;
 
                 $(".character").off("click");
 
@@ -194,6 +202,7 @@ function game(){
             $(".attack").hide();
             $('#hero_character').hide('slow');
             $('.header').text("CLICK TO RESTART");
+            $(".character").off("click");
             
 
         }
@@ -201,12 +210,18 @@ function game(){
 
         if(characterCount === 1){
             $('.header').text("CLICK TO RESTART");
+            $(".character").off("click");
         }
     })
  
 }
+$('.start').on('click',function(){
+    $('.start').hide();
+    lemmeWinks.play();
+    console.log(lemmeWinks);
+    game();
+})
 
-game();
 
 $('.header').on('click',function(){
     if (heroCurrentHealth <= 0 || characterCount === 1){
@@ -218,10 +233,10 @@ $('.header').on('click',function(){
         $('#enemy_character').hide();
 
         first_click = true;
-        cartman = {attack:10,defense:30};
-        stan = {attack:100,defense:20};
-        kenny = {attack:25,defense:15};
-        kyle = {attack:30,defense:10};
+        cartman = {attack:90,defense:65};
+        stan = {attack:85,defense:50};
+        kenny = {attack:110,defense:50};
+        kyle = {attack:95,defense:60};
         heroCurrentHealth = 100;
         enemyCurrentHealth = 100;
         characterCount = 4;

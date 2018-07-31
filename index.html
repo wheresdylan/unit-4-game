@@ -19,7 +19,10 @@
 </head>
 
     <body>
-        
+        <audio id="audio1" src="assets/audio/South Park - Lemmiwinks.mp3" controls="controls" preload="auto"></audio>
+
+        <audio id="audio2" src="assets/audio/Strong_Punch-Mike_Koenig-574430706.wav" preload="auto"></audio>
+
           <div class="container">
                 <div class="row">
                     <div class="col-md-5">
@@ -50,6 +53,15 @@
                             </div> 
                             
                         </div>
+                    </div>
+                    <div class="col-md-7">
+                        <img src="assets/images/southPark.jpg" class="img-fluid" id="southPark" alt="Responsive image">
+                        <div id="startBox">
+                            <h4>press start to begin</h4>
+                            <h4>choose your BattleField</h4>
+                            <h4>Choose your Fighter</h4>
+                        </div>
+                   
                     </div>
                 </div>
                 <div class="row">
@@ -98,12 +110,12 @@
                             <div class="box-3">
                                 <div class="row">
                                     <div class='col-md-6'>
-                                        <div class="progress" style="height:25px">
+                                        <div class="progress" style="height:32px">
                                             <div id ="heroHealth" class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"><span class="heroPercentage">100% HP</span></div>
                                         </div>
                                     </div>
                                     <div class='col-md-6'>
-                                        <div class="progress" style="height:25px">
+                                        <div class="progress" style="height:32px">
                                             <div id = "enemyHealth"class="progress-bar" role="progressbar" style="width: 100%;" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"><span class="enemyPercentage">100% HP</span></div>
                                         </div>
                                     </div>
@@ -126,6 +138,9 @@
                                         <button type="button" class="btn btn-secondary btn-lg">ATTACK</button>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="start">
+                                    <h1>START<h1>
                                 </div>
                             </div>
                         </div>
