@@ -1,7 +1,7 @@
 
+$(document).ready(function() {
 
- $(document).ready(function() {
-
+//declaring my variables
     var character;
     var battleGround;
     var first_click = true;
@@ -18,19 +18,18 @@
     var characterCount = 4;
     var lemmeWinks = document.getElementById("audio1");
     var punch = document.getElementById("audio2");
+    var stanSound = document.getElementById("stanSound");
+    var cartmanSound = document.getElementById("cartmanSound");
+    var kyleSound = document.getElementById("kyleSound");
+    var kennySound = document.getElementById("kennySound");
+
+    lemmeWinks.volume = 0.15;
 
     $('#winLose').hide();
     $('#attackPercentage').hide();
 
-function game(){
-    $('#winLose').hide();
-    $('#hero_character').hide();
-    $('#enemy_character').hide();
-
-    $('.header').text("CHOOSE YOUR FIGHTER");
-    $(".attack").hide();
-
-
+//function to choose your background
+function backGroundChoice() {
     $(".background").on("click", function() {
         battleGround = ($(this).attr('id'));
         if (battleGround === "bus_stop"){
@@ -51,8 +50,10 @@ function game(){
 
         $(".background").off('click');
       });
-      
+    }
 
+//function for character choice
+function characterChoice(){
     $(".character").on("click", function() {
     if (first_click){
         character = ($(this).attr('id'));
@@ -62,6 +63,7 @@ function game(){
             $("#hero_character").attr('src',"https://vignette.wikia.nocookie.net/southpark/images/f/fd/The-coon.png/revision/latest?cb=20171107042514");
             $('#hero_character').show('slow');
             $('#name1').text("THE COON");
+            cartmanSound.play();
             hero = cartman;
         }
         else if(character === "kyle"){
@@ -69,6 +71,7 @@ function game(){
             $('.header').text("CHOOSE AN OPPONENT");
             $("#hero_character").attr('src',"https://vignette.wikia.nocookie.net/p__/images/e/e9/Spfbw-humankite.png/revision/latest?cb=20171028075530&path-prefix=protagonist");
             $('#hero_character').show('slow');
+            kyleSound.play();
             hero = kyle;
             $('#name1').text("THE HUMAN KITE");
             
@@ -79,6 +82,7 @@ function game(){
             $("#hero_character").attr('src',"https://vignette.wikia.nocookie.net/southpark/images/b/bd/Toolshed.transparent.png/revision/latest?cb=20170527025409");
             $('#hero_character').show('slow');
             $('#name1').text("TOOL SHED");
+            stanSound.play();
             hero = stan;
         }
         else if(character === "kenny"){
@@ -87,6 +91,7 @@ function game(){
             $("#hero_character").attr('src',"https://vignette.wikia.nocookie.net/southpark/images/1/1c/Mysterion_2.png/revision/latest?cb=20171107042555");
             $('#hero_character').show('slow');
             $('#name1').text("MYSTERION");
+            kennySound.play();
             hero = kenny;
         }
 
@@ -99,6 +104,7 @@ function game(){
                     $("#enemy_character").attr('src',"https://vignette.wikia.nocookie.net/southpark/images/f/fd/The-coon.png/revision/latest?cb=20171107042514");
                     $('#enemy_character').show('slow');
                     $('#name2').text("THE COON");
+                    cartmanSound.play();
                     enemy = cartman;
                     $(".attack").show();
                 }
@@ -107,6 +113,7 @@ function game(){
                     $("#enemy_character").attr('src',"https://vignette.wikia.nocookie.net/p__/images/e/e9/Spfbw-humankite.png/revision/latest?cb=20171028075530&path-prefix=protagonist");
                     $('#enemy_character').show('slow');
                     $('#name2').text("THE HUMAN KITE");
+                    kyleSound.play();
                     enemy = kyle;
                     $(".attack").show();
                 }
@@ -115,6 +122,7 @@ function game(){
                     $("#enemy_character").attr('src',"https://vignette.wikia.nocookie.net/southpark/images/b/bd/Toolshed.transparent.png/revision/latest?cb=20170527025409");
                     $('#enemy_character').show('slow');
                     $('#name2').text("TOOL SHED");
+                    stanSound.play();
                     enemy = stan;
                     $(".attack").show();
                 }
@@ -123,17 +131,18 @@ function game(){
                     $("#enemy_character").attr('src',"https://vignette.wikia.nocookie.net/southpark/images/1/1c/Mysterion_2.png/revision/latest?cb=20171107042555");
                     $('#enemy_character').show('slow');
                     $('#name1').text("MYSTERION");
+                    kennySound.play();
                     enemy = kenny;
                     $(".attack").show();
                 }
 
+            $(".character").off("click");
+        }
+    });
+}
 
-                $(".character").off("click");
-            }
-
-        });
-
-
+//attack function
+function attackFunction(){
     $(".attack").on("click",function() {
 
         $('#attackPercentage').show();
@@ -184,6 +193,7 @@ function game(){
                     $('#enemy_character').show('slow');
                     $('#name2').text("THE COON");
                     $('#winLose').hide();
+                    cartmanSound.play();
                     enemy = cartman;
                 }
                 else if(character === "kyle"){
@@ -192,6 +202,7 @@ function game(){
                     $('#enemy_character').show('slow');
                     $('#name2').text("THE HUMAN KITE");
                     $('#winLose').hide();
+                    kyleSound.play();
                     enemy = kyle;
                 }
                 else if(character === "stan"){
@@ -200,6 +211,7 @@ function game(){
                     $('#enemy_character').show('slow');
                     $('#name2').text("TOOL SHED");
                     $('#winLose').hide();
+                    stanSound.play();
                     enemy = stan;
                 }
                 else if(character === "kenny"){
@@ -208,6 +220,7 @@ function game(){
                     $('#enemy_character').show('slow');
                     $('#name2').text("MYSTERION");
                     $('#winLose').hide();
+                    kennySound.play();
                     enemy = kenny;
                 }
                 $(".attack").show();
@@ -222,7 +235,6 @@ function game(){
                 $(".character").off("click");
 
             });
-        
         }
 
         if(heroCurrentHealth <= 0){
@@ -231,25 +243,29 @@ function game(){
             $('.header').text("CLICK TO RESTART");
             $(".character").off("click");
             $('#winLose').text("YOU LOSE, CLICK RESTART TO PLAY AGAIN");
+            $('#heroHealth').css('width', 0 + '%');
         }
     
-
         if(characterCount === 1){
             $('.header').text("CLICK TO RESTART");
             $(".character").off("click");
             $('#winLose').text("YOU DEFEATED ALL ENEMYS, CLICK RESTART TO PLAY AGAIN");
         }
     });
- 
 }
-$('.start').on('click',function(){
-    $('.start').hide();
-    lemmeWinks.play();
-    console.log(lemmeWinks);
-    game();
-});
 
+//start game function
+function startgame(){
+    $('.start').on('click',function(){
+        $('.start').hide();
+        lemmeWinks.play();
+        console.log(lemmeWinks);
+        game();
+    });
+}
 
+//restart game function
+function restartGame(){
 $('.header').on('click',function(){
     if (heroCurrentHealth <= 0 || characterCount === 1){
         $('.header').text("CHOOSE YOUR FIGHTER");
@@ -286,7 +302,25 @@ $('.header').on('click',function(){
 
         game();
     }
-
 });
+}
+
+// function to run the game    
+function game(){
+    $('#winLose').hide();
+    $('#hero_character').hide();
+    $('#enemy_character').hide();
+
+    $('.header').text("CHOOSE YOUR FIGHTER");
+    $(".attack").hide();
+
+    //function calls
+    backGroundChoice();
+    characterChoice();
+    attackFunction();
+ }
+
+startgame()
+restartGame()
 
 });
